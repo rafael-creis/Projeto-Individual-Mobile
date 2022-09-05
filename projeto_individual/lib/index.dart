@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_individual/color_palette.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -165,8 +166,10 @@ class _IndexState extends State<Index> {
                                           shape: MaterialStateProperty.all(
                                               RoundedRectangleBorder(
                                                   borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(12)),
+                                                      const BorderRadius.only(
+                                                        topLeft: Radius.circular(12),
+                                                        bottomRight: Radius.circular(12),
+                                                          ),
                                                   side: BorderSide(
                                                     color:
                                                         ColorPalette().secColor,
@@ -228,6 +231,205 @@ class _IndexState extends State<Index> {
                         ],
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: ColorPalette().darkGrey,
+                            border: Border.all(
+                                color: ColorPalette().primColor, width: 2),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(25)),
+                            boxShadow: [SessionPalette().sessionShadow]),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8, top: 20),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width * .4,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: ColorPalette().primColor,
+                                              width: 1.5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  ColorPalette().darkerGrey,
+                                              spreadRadius: 2.5,
+                                            ),
+                                            BoxShadow(
+                                              color: ColorPalette().mainGrey,
+                                              spreadRadius: -4,
+                                            )
+                                          ]),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  bottom: 8),
+                                              child: const Text(
+                                                'Nossas Invenções',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            const Text(
+                                                'Com tecnologia de ponta, e a quantidade ideal de testes para saber a qualidade de cada novo equipamento, a Aperture Science™ garante total segurança* e precisão com todas as nossas invenções.',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                          style: ButtonStyle(
+                                              elevation:
+                                                  MaterialStateProperty.all(
+                                                      5),
+                                              shadowColor:
+                                                  MaterialStateProperty.all(
+                                                      ColorPalette()
+                                                          .darkerGrey),
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      ColorPalette()
+                                                          .mainGrey),
+                                              shape: MaterialStateProperty
+                                                  .all(RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topRight:
+                                                            Radius.circular(
+                                                                12),
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                12),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                12),
+                                                      ),
+                                                      side: BorderSide(
+                                                        color: ColorPalette()
+                                                            .primColor,
+                                                        width: 2,
+                                                      )))),
+                                          onPressed: () {},
+                                          child: const Text(
+                                            'Ver Invenções',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 12.0),
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width * .6,
+                                    height: 290,
+                                    child: ListView.builder(
+                                      itemCount: 2,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(right: 8.0),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                2.5,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .only(
+                                                              topLeft: Radius
+                                                                  .circular(20),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      20)),
+                                                      border: Border.all(
+                                                          color: Colors.white,
+                                                          width: 3)),
+                                                  height: 150,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  child: Stack(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      fit: StackFit.expand,
+                                                      children: [
+                                                        Image.asset(
+                                                          'assets/images/tech_bckg.png',
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        Image.asset(
+                                                          'assets/images/portalweapon.png',
+                                                        ),
+                                                      ]),
+                                                ),
+                                                Expanded(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 3),
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .only(
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        20),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        20))),
+                                                    child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(3.0),
+                                                      child: Text(
+                                                        'Aperture Science Handheld Portal Device',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 17),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )),
                   )
                 ],
               );
