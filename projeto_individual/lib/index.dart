@@ -1,7 +1,9 @@
-import 'package:flutter/gestures.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:projeto_individual/color_palette.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projeto_individual/slide.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -11,7 +13,42 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-  get controller => null;
+  List<Slide> listaSlides = const [
+    Slide(
+        imagePath: 'assets/images/portalweapon.png',
+        title: 'APERTURE SCIENCE HANDHELD PORTAL DEVICE'),
+    Slide(
+        imagePath: 'assets/images/companion_cube.png',
+        title: 'APERTURE SCIENCE WEIGHTED COMPANION CUBE'),
+    Slide(
+        imagePath: 'assets/images/sentry_turret.png',
+        title: 'APERTURE SCIENCE AUTOMATIC SENTRY TURRET'),
+    Slide(
+        imagePath: 'assets/images/longfall_boots.png',
+        title: 'APERTURE SCIENCE LONG FALL BOOT'),
+    Slide(
+        imagePath: 'assets/images/glados.png',
+        title: 'APERTURE SCIENCE █████████ ██████ ██████')
+  ];
+
+  BoxShadow portraitBlink =
+      const BoxShadow(color: Colors.white, spreadRadius: 2, blurRadius: 7);
+  @override
+  void initState() {
+    int counter = 0;
+    int duration = 750;
+    Timer.periodic(Duration(milliseconds: duration), (timer) {
+      counter++;
+      setState(() {
+        portraitBlink = counter % 2 == 0
+            ? const BoxShadow(
+                color: Colors.white, spreadRadius: 2, blurRadius: 7)
+            : const BoxShadow(
+                color: Colors.white, spreadRadius: 0, blurRadius: 0);
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +160,7 @@ class _IndexState extends State<Index> {
                                           width: 1.5,
                                           color: ColorPalette().primColor),
                                       boxShadow: [
-                                        const BoxShadow(
-                                            color: Colors.white,
-                                            spreadRadius: 2,
-                                            blurRadius: 7),
+                                        portraitBlink,
                                         BoxShadow(
                                             color: ColorPalette().darkerGrey),
                                         BoxShadow(
@@ -167,9 +201,11 @@ class _IndexState extends State<Index> {
                                               RoundedRectangleBorder(
                                                   borderRadius:
                                                       const BorderRadius.only(
-                                                        topLeft: Radius.circular(12),
-                                                        bottomRight: Radius.circular(12),
-                                                          ),
+                                                    topLeft:
+                                                        Radius.circular(12),
+                                                    bottomRight:
+                                                        Radius.circular(12),
+                                                  ),
                                                   side: BorderSide(
                                                     color:
                                                         ColorPalette().secColor,
@@ -252,15 +288,15 @@ class _IndexState extends State<Index> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      width: MediaQuery.of(context).size.width * .4,
+                                      width: MediaQuery.of(context).size.width *
+                                          .4,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               color: ColorPalette().primColor,
                                               width: 1.5),
                                           boxShadow: [
                                             BoxShadow(
-                                              color:
-                                                  ColorPalette().darkerGrey,
+                                              color: ColorPalette().darkerGrey,
                                               spreadRadius: 2.5,
                                             ),
                                             BoxShadow(
@@ -297,30 +333,25 @@ class _IndexState extends State<Index> {
                                       child: ElevatedButton(
                                           style: ButtonStyle(
                                               elevation:
-                                                  MaterialStateProperty.all(
-                                                      5),
+                                                  MaterialStateProperty.all(5),
                                               shadowColor:
                                                   MaterialStateProperty.all(
                                                       ColorPalette()
                                                           .darkerGrey),
                                               backgroundColor:
                                                   MaterialStateProperty.all(
-                                                      ColorPalette()
-                                                          .mainGrey),
-                                              shape: MaterialStateProperty
-                                                  .all(RoundedRectangleBorder(
+                                                      ColorPalette().mainGrey),
+                                              shape: MaterialStateProperty.all(
+                                                  RoundedRectangleBorder(
                                                       borderRadius:
                                                           const BorderRadius
                                                               .only(
                                                         topRight:
-                                                            Radius.circular(
-                                                                12),
+                                                            Radius.circular(12),
                                                         bottomLeft:
-                                                            Radius.circular(
-                                                                12),
+                                                            Radius.circular(12),
                                                         bottomRight:
-                                                            Radius.circular(
-                                                                12),
+                                                            Radius.circular(12),
                                                       ),
                                                       side: BorderSide(
                                                         color: ColorPalette()
@@ -340,89 +371,30 @@ class _IndexState extends State<Index> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 12.0),
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width * .6,
-                                    height: 290,
-                                    child: ListView.builder(
-                                      itemCount: 2,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(right: 8.0),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2.5,
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .only(
-                                                              topLeft: Radius
-                                                                  .circular(20),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      20)),
-                                                      border: Border.all(
-                                                          color: Colors.white,
-                                                          width: 3)),
-                                                  height: 150,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  child: Stack(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      fit: StackFit.expand,
-                                                      children: [
-                                                        Image.asset(
-                                                          'assets/images/tech_bckg.png',
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                        Image.asset(
-                                                          'assets/images/portalweapon.png',
-                                                        ),
-                                                      ]),
-                                                ),
-                                                Expanded(
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        border: Border.all(
-                                                            color: Colors.white,
-                                                            width: 3),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                    .only(
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        20),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        20))),
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(3.0),
-                                                      child: Text(
-                                                        'Aperture Science Handheld Portal Device',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 17),
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4.0, vertical: 12.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                      right: BorderSide(
+                                          color: ColorPalette().primColor,
+                                          width: 2),
+                                    )),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          .6,
+                                      height: 290,
+                                      child: ListView.builder(
+                                        itemCount: listaSlides.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Slide(
+                                              imagePath:
+                                                  listaSlides[index].imagePath,
+                                              title: listaSlides[index].title);
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
